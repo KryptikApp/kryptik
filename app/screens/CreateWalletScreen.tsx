@@ -4,6 +4,7 @@ import { StyleSheet, Text, Image, View, Button, Pressable } from 'react-native';
 import React from 'react';
 import colors from "../config/colors";
 import { styleLanding } from "../config/styles";
+import ButtonBtm from "../components/Button";
 
 function CreateWalletScreen(props:any) {
         let x:string = "Landing Screen!";
@@ -21,9 +22,7 @@ function CreateWalletScreen(props:any) {
                 <Text style={styleLanding.textSubTitle}>With Kryptik, digital ownership is super simple</Text>
             </View>
             
-            <Pressable style={styleLanding.buttonBottom} onPress={handleGetStarted}>
-            <Text style={styleLanding.textButton}>Create Wallet</Text>
-            </Pressable>
+            <ButtonBtm onPress={handleGetStarted} title="Create wallet"></ButtonBtm>
             </LinearGradient>
         );
 

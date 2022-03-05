@@ -1,10 +1,11 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Text, Image, View, Button, Pressable } from 'react-native';
-import { Link } from 'react-router-dom'
+
 
 import React from 'react';
 import colors from "../config/colors";
 import { styleLanding } from "../config/styles";
+import ButtonBtm from "../components/Button";
 
 function LandingScreen(props:any) {
         let x:string = "Landing Screen!";
@@ -22,11 +23,7 @@ function LandingScreen(props:any) {
                 <Text style={styleLanding.textSubTitle}>With Kryptik, digital ownership is super simple</Text>
             </View>
             
-            <Link to="CreateWalletScreen">
-            <Pressable style={styleLanding.buttonBottom} onPress={handleGetStarted}>
-            <Text style={styleLanding.textButton}>Get Started</Text>
-            </Pressable>
-            </Link>
+            <ButtonBtm onPress={handleGetStarted} title="Get Started"></ButtonBtm>
             </LinearGradient>
         );
 
