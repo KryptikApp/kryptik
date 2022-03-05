@@ -2,32 +2,33 @@ import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Text, Image, View, Button, Pressable } from 'react-native';
 
 import React from 'react';
+import colors from "../config/colors";
 
-function LandingScreen(props:any) {
+function CreateWalletScreen(props:any) {
         let x:string = "Landing Screen!";
         console.log(x);
         
         let handleGetStarted = function(){
-            console.log("Get started!")
+            console.log("Create seed loop!")
         }
       
       
         return (
-            <LinearGradient colors={['#4d9dff', '#4dbbff', '#63ceff']} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <LinearGradient colors={[colors.blueMid, colors.blueLight, colors.blue]} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <View style={styles.containerText}>
                 <Text style={styles.textMain}>Crypto made simple, for everyone</Text>
                 <Text style={styles.textSubTitle}>With Kryptik, digital ownership is super simple</Text>
             </View>
             
             <Pressable style={styles.buttonBottom} onPress={handleGetStarted}>
-            <Text style={styles.textButton}>Get Started</Text>
+            <Text style={styles.textButton}>Create Wallet</Text>
             </Pressable>
             </LinearGradient>
         );
 
 }
 
-export default LandingScreen;
+export default CreateWalletScreen;
 
 
 
