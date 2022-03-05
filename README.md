@@ -2,7 +2,7 @@
 Kryptik is a mobile app that simplifies digital ownership. One seed. One wallet. Infinite possibilities. 
 
 ## How to run this project
-Make sure you have either the LTS version or current version of Node.js installed.
+Make sure you have a current version of Node.js installed.
 ```
 npm install -g n
 n latest
