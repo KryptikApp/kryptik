@@ -5,13 +5,17 @@ import { StyleSheet, Text, Image, View, Button, Pressable } from 'react-native';
 import React from 'react';
 import colors from "../config/colors";
 import ButtonBtm from "../components/Button";
+import { useNavigation } from "@react-navigation/native";
 
-function LandingScreen(props:any) {
+
+
+function LandingScreen({navigation}) {
         let x:string = "Landing Screen!";
         console.log(x);
         
         let handleGetStarted = function(){
             console.log("Get started!");
+            navigation.navigate("CreateWalletScreen");
         }
       
       
