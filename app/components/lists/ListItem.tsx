@@ -1,24 +1,26 @@
 import React from "react";
 import { View, StyleSheet, Image, TouchableHighlight } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import Swipeable from "react-native-gesture-handler/Swipeable";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Swipeable from 'react-native-gesture-handler/Swipeable'
+
 
 import Text from "../Text";
 import colors from "../../config/colors";
+
 
 function ListItem({
   title,
   subTitle,
   image,
-  IconComponent,
   onPress,
   renderRightActions,
 }) {
   return (
+    <GestureHandlerRootView>
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
         <View style={styles.container}>
-          {IconComponent}
           {image && <Image style={styles.image} source={image} />}
           <View style={styles.detailsContainer}>
             <Text style={styles.title} numberOfLines={1}>
@@ -38,6 +40,7 @@ function ListItem({
         </View>
       </TouchableHighlight>
    </Swipeable>
+   </GestureHandlerRootView>
   );
 }
 
