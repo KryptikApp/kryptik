@@ -6,8 +6,23 @@ import 'react-native-gesture-handler';
 import MessagesScreen from './app/screens/MessageScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import WalletScreen from './app/screens/WalletScreen';
+import ExploreScreen from './app/screens/ExploreScreen';
+import SendScreen from './app/screens/SendScreen';
+import colors from './app/config/colors';
 
-
+const Tab = createBottomTabNavigator();
+const TabNavigator = () =>{
+  return (
+      <Tab.Navigator  
+       >
+        <Tab.Screen name="Find" component={ExploreScreen} />
+        <Tab.Screen name="Wallet" component={WalletScreen} />
+        <Tab.Screen name="Send" component={SendScreen} />
+      </Tab.Navigator>
+  );
+}
 const Stack = createStackNavigator();
 const StackNavigator = () =>{
   return(
@@ -30,7 +45,7 @@ const StackNavigator = () =>{
 export default function App() {
   return (
       <NavigationContainer>
-        <StackNavigator/>
+        <TabNavigator/>
       </NavigationContainer>
   );
 }
