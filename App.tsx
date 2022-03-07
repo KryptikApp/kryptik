@@ -13,6 +13,7 @@ import SendScreen from './app/screens/SendScreen';
 import colors from './app/config/colors';
 import { AntDesign } from '@expo/vector-icons';
 import ProfileScreen from './app/screens/ProfileScreen';
+import AuthNavigator from './app/navigation/AuthNavigation';
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () =>{
@@ -33,29 +34,11 @@ const TabNavigator = () =>{
       </Tab.Navigator>
   );
 }
-const Stack = createStackNavigator();
-const StackNavigator = () =>{
-  return(
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      
-    <Stack.Screen
-      name="LandingScreen"
-      component={LandingScreen}
-      options={{ title: 'Welcome' }}
-    />
-    <Stack.Screen
-      name="CreateWalletScreen"
-      component={CreateWalletScreen}
-      options={{ title: 'Create Wallet' }}
-    />
-  </Stack.Navigator>
-  )
-}
 
 export default function App() {
   return (
       <NavigationContainer>
-        <TabNavigator/>
+        <AuthNavigator/>
       </NavigationContainer>
   );
 }
