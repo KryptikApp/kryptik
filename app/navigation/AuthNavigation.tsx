@@ -23,7 +23,7 @@ const AuthNavigator = () =>{
     <Stack.Screen
       name="ImportWalletScreen"
       component={ImportWalletScreen}
-      options={{ title: 'Import Wallet' }}
+      options={{ title: 'Import Wallet', headerShown:true }}
     />
   </Stack.Navigator>
   )
