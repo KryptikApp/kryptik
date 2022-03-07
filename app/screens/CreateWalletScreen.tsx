@@ -6,7 +6,7 @@ import colors from "../config/colors";
 import ButtonBtm from "../components/Button";
 
 function CreateWalletScreen(props:any) {
-        let x:string = "Landing Screen!";
+        let x:string = "Create walllet Screen!";
         console.log(x);
         
         let handleGetStarted = function(){
