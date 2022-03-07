@@ -1,10 +1,10 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet, Text, Image, View, Button, Pressable } from 'react-native';
+import { StyleSheet, Text, Image, View, Pressable } from 'react-native';
 
 
 import React from 'react';
 import colors from "../config/colors";
-import ButtonBtm from "../components/Button";
+import Button from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
 
 
@@ -26,7 +26,8 @@ function LandingScreen({navigation}) {
                 <Text style={styles.textSubTitle}>With Kryptik, digital ownership is super simple</Text>
             </View>
             <View style={styles.buttonsContainer}>
-            <ButtonBtm onPress={handleGetStarted} title="Get Started"></ButtonBtm>
+    
+            <Button onPress={handleGetStarted} title="Get Started" colorButton="white" colorText="black"></Button>
             </View>
             </LinearGradient>
         );

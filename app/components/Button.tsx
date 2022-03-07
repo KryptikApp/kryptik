@@ -3,13 +3,13 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import colors from "../config/colors";
 
-function AppButton({ title, onPress, color = "black" }) {
+function AppButton({ title, onPress, colorButton = "black", colorText="white" }) {
   return (
     <TouchableOpacity
-      style={[styles.button, { backgroundColor: colors[color] }]}
+      style={[styles.button, { backgroundColor: colors[colorButton] }]}
       onPress={onPress}
     >
-      <Text style={styles.text}>{title}</Text>
+      <Text style={[styles.text, { color: colorText}]}>{title}</Text>
     </TouchableOpacity>
   );
 }
