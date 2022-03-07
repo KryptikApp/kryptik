@@ -4,15 +4,19 @@ import { StyleSheet, Text, Image, View, Button, Pressable } from 'react-native';
 import React from 'react';
 import colors from "../config/colors";
 import ButtonBtm from "../components/Button";
+import AppText from "../components/Text";
+import { Link } from "@react-navigation/native";
 
 function CreateWalletScreen(props:any) {
         let x:string = "Create walllet Screen!";
         console.log(x);
         
-        let handleGetStarted = function(){
+        let handleCreateWallet = function(){
             console.log("Create seed loop!")
         }
-      
+        let handleImporteWallet = function(){
+          console.log("import wallet")
+        }
       
         return (
             <LinearGradient colors={[colors.blueMid, colors.blueLight, colors.blue]} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -21,7 +25,10 @@ function CreateWalletScreen(props:any) {
                 <Text style={styles.textSubTitle}>With Kryptik, digital ownership is super simple</Text>
             </View>
             
-            <ButtonBtm onPress={handleGetStarted} title="Create wallet"></ButtonBtm>
+            <ButtonBtm onPress={handleCreateWallet} title="Create wallet"></ButtonBtm>
+            <Link to={{ screen: 'ImportWalletScreen'}}>
+              Import Existing Wallet
+            </Link>
             </LinearGradient>
         );
 

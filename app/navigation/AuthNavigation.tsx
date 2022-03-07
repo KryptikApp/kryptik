@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import CreateWalletScreen from "../screens/CreateWalletScreen";
 import LandingScreen from "../screens/LandingScreen";
+import ImportWalletScreen from '../screens/ImportWalletScreen';
 
 const Stack = createStackNavigator();
 const AuthNavigator = () =>{
@@ -18,6 +19,11 @@ const AuthNavigator = () =>{
       name="CreateWalletScreen"
       component={CreateWalletScreen}
       options={{ title: 'Create Wallet' }}
+    />
+    <Stack.Screen
+      name="ImportWalletScreen"
+      component={ImportWalletScreen}
+      options={{ title: 'Import Wallet' }}
     />
   </Stack.Navigator>
   )
