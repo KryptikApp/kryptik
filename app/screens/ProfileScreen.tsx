@@ -1,18 +1,18 @@
 import Screen from "../components/Screen";
 import AppText from "../components/Text";
 
-function ExploreScreen(props:any) {
-    let x:string = "Explore Screen!";
+function ProfileScreen(props:any) {
+    let x:string = "Profile Screen!";
     console.log(x);
     
   
   
     return (
         <Screen>
-            <AppText>Find networks, assets, and people.</AppText>
+            <AppText>Your profile.</AppText>
         </Screen>
     );
 
 }
 
-export default ExploreScreen;
+export default ProfileScreen;

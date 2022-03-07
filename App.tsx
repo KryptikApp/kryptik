@@ -11,15 +11,25 @@ import WalletScreen from './app/screens/WalletScreen';
 import ExploreScreen from './app/screens/ExploreScreen';
 import SendScreen from './app/screens/SendScreen';
 import colors from './app/config/colors';
+import { AntDesign } from '@expo/vector-icons';
+import ProfileScreen from './app/screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () =>{
   return (
-      <Tab.Navigator  
+      <Tab.Navigator // ...
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: colors.secondary,
+        tabBarInactiveTintColor: colors.black,
+        tabBarStyle: {
+          backgroundColor: colors.white
+        }
+      }}
        >
-        <Tab.Screen name="Find" component={ExploreScreen} />
-        <Tab.Screen name="Wallet" component={WalletScreen} />
-        <Tab.Screen name="Send" component={SendScreen} />
+        <Tab.Screen name="Find" component={ExploreScreen}  options={{ tabBarIcon: ({size, color})=><AntDesign name="search1" size={size} color={color}/> }}/>
+        <Tab.Screen name="Wallet" component={WalletScreen}  options={{ tabBarIcon: ({size, color})=><AntDesign name="wallet" size={size} color={color}/> }}/>
+        <Tab.Screen name="Profile" component={ProfileScreen}  options={{ tabBarIcon: ({size, color})=><AntDesign name="user" size={size} color={color}/> }}/>
       </Tab.Navigator>
   );
 }

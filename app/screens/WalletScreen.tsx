@@ -2,7 +2,7 @@ import Screen from "../components/Screen";
 import AppText from "../components/Text";
 
 function WalletScreen(props:any) {
-    let x:string = "Send Screen!";
+    let x:string = "Wallet Screen!";
     console.log(x);
     
   
