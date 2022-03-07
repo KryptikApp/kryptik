@@ -14,6 +14,7 @@ import colors from './app/config/colors';
 import { AntDesign } from '@expo/vector-icons';
 import ProfileScreen from './app/screens/ProfileScreen';
 import AuthNavigator from './app/navigation/AuthNavigation';
+import navigationTheme from './app/navigation/navigationTheme';
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () =>{
@@ -37,7 +38,7 @@ const TabNavigator = () =>{
 
 export default function App() {
   return (
-      <NavigationContainer>
+      <NavigationContainer theme={navigationTheme}>
         <AuthNavigator/>
       </NavigationContainer>
   );

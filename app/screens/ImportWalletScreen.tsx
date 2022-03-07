@@ -16,12 +16,14 @@ function CreateWalletScreen(props:any) {
       
       
         return (
+            // no need for screen element if there is a navigation header on top
             <>
             <View style={styles.containerText}>
                 <Text style={styles.textTitle}>Import a Seed Phrase</Text>
                 <Text style={styles.textSubTitle}>Enter your secret seed phrase here to restore your wallet</Text>
-            </View><View style={styles.buttonsContainer}>
-                    <AppButton onPress={handleGetStarted} title="Import Wallet"></AppButton>
+            </View>
+            <View style={styles.buttonsContainer}>
+                <AppButton onPress={handleGetStarted} title="Import Wallet"></AppButton>
             </View>
             </>
         );
