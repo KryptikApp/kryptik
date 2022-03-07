@@ -24,11 +24,12 @@ function CreateWalletScreen(props:any) {
                 <Text style={styles.textMain}>Crypto made simple, for everyone</Text>
                 <Text style={styles.textSubTitle}>With Kryptik, digital ownership is super simple</Text>
             </View>
-            
-            <ButtonBtm onPress={handleCreateWallet} title="Create wallet"></ButtonBtm>
-            <Link to={{ screen: 'ImportWalletScreen'}}>
-              Import Existing Wallet
-            </Link>
+            <View style={styles.buttonsContainer}>
+              <ButtonBtm onPress={handleCreateWallet} title="Create wallet"></ButtonBtm>
+              <Link style={styles.textAlternate} to={{ screen: 'ImportWalletScreen'}}>
+                Import Existing Wallet
+              </Link>
+            </View>
             </LinearGradient>
         );
 
@@ -37,12 +38,18 @@ function CreateWalletScreen(props:any) {
 
 
 const styles = StyleSheet.create({
+    buttonsContainer: {
+      padding: 20,
+      width: "100%",
+      position: "absolute",
+      bottom: 20,
+      alignItems:'center'
+    },
     container: {
       flex: 1,
       backgroundColor:"#24a7ff",
       alignItems: 'center',
     },
-    
     textMain: {
       fontWeight: "900",
       fontSize: 60,
@@ -53,6 +60,10 @@ const styles = StyleSheet.create({
       fontSize: 20,
       color: "white",
       paddingRight: "40%",
+    },
+    textAlternate:{
+      fontSize: 16,
+      color: "white",
     },
     buttonBottom:{
         position:"absolute",

@@ -3,8 +3,8 @@ import { StyleSheet, Text, Image, View, Button, Pressable } from 'react-native';
 
 
 import colors from "../config/colors";
-import ButtonBtm from "../components/Button";
 import Screen from "../components/Screen";
+import AppButton from '../components/Button';
 
 function CreateWalletScreen(props:any) {
         let x:string = "Create walllet Screen!";
@@ -16,14 +16,14 @@ function CreateWalletScreen(props:any) {
       
       
         return (
-            <Screen>
+            <>
             <View style={styles.containerText}>
                 <Text style={styles.textTitle}>Import a Seed Phrase</Text>
                 <Text style={styles.textSubTitle}>Enter your secret seed phrase here to restore your wallet</Text>
+            </View><View style={styles.buttonsContainer}>
+                    <AppButton onPress={handleGetStarted} title="Import Wallet"></AppButton>
             </View>
-            
-            <ButtonBtm onPress={handleGetStarted} title="Import Wallet"></ButtonBtm>
-            </Screen>
+            </>
         );
 
 }
@@ -31,6 +31,13 @@ function CreateWalletScreen(props:any) {
 
 
 const styles = StyleSheet.create({
+    buttonsContainer: {
+        padding: 20,
+        width: "100%",
+        position: "absolute",
+        bottom: 20,
+        alignItems:'center'
+      },
     container: {
       flex: 1,
       backgroundColor:"#24a7ff",
@@ -39,17 +46,16 @@ const styles = StyleSheet.create({
     textTitle: {
       fontWeight: "700",
       fontSize: 30,
-      color: "white",
+      color: colors.blueMid,
     },
     textSubTitle: {
       fontWeight: "500",
       fontSize: 20,
-      color: "white",
-      paddingRight: "40%",
+      color: colors.black,
+      paddingRight: "10%",
     },
     containerText:{
         position: "absolute",
-        top: "10%",
         paddingLeft:"4%"
     }
   });

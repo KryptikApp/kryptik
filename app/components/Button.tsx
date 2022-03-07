@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import colors from "../config/colors";
 
-function ButtonBtm({ title, onPress, color = "black" }) {
+function AppButton({ title, onPress, color = "black" }) {
   return (
     <TouchableOpacity
       style={[styles.button, { backgroundColor: colors[color] }]}
@@ -16,8 +16,6 @@ function ButtonBtm({ title, onPress, color = "black" }) {
 
 const styles = StyleSheet.create({
   button: {
-    position:"absolute",
-    bottom: 40,
     width: "80%",
     height: 70,
     backgroundColor: colors.black,
@@ -34,4 +32,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ButtonBtm;
+export default AppButton;

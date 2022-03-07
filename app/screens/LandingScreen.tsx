@@ -25,8 +25,9 @@ function LandingScreen({navigation}) {
                 <Text style={styles.textMain}>Crypto made simple, for everyone</Text>
                 <Text style={styles.textSubTitle}>With Kryptik, digital ownership is super simple</Text>
             </View>
-            
+            <View style={styles.buttonsContainer}>
             <ButtonBtm onPress={handleGetStarted} title="Get Started"></ButtonBtm>
+            </View>
             </LinearGradient>
         );
 
@@ -35,6 +36,13 @@ function LandingScreen({navigation}) {
 
 
 const styles = StyleSheet.create({
+    buttonsContainer: {
+      padding: 20,
+      width: "100%",
+      position: "absolute",
+      bottom: 20,
+      alignItems:'center'
+    },
     container: {
       flex: 1,
       backgroundColor:"#24a7ff",
