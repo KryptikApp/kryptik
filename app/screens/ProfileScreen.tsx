@@ -17,6 +17,7 @@ import Screen from "../components/Screen";
 import AppText from "../components/Text";
 import colors from '../config/colors';
 import { ListItemSeparator } from '../components/lists';
+import AddressButton from '../components/AddressButton';
 
 function ProfileScreen(props:any) {
     let x:string = "Profile Screen!";
@@ -36,7 +37,9 @@ function ProfileScreen(props:any) {
           <View style={styles.body}>
             <View style={styles.headerProfileContainer}>
               <Text style={styles.name}>Jerry Prell</Text>
-              <Text style={styles.info}>0x...89e3</Text>
+              <View style={styles.headerAddresscontainer}>
+              <AddressButton addy="0x...89e3" image={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}></AddressButton>
+              </View>
             </View>  
               <AppText style={styles.profileDescription}>Hey! I'm funky and fun. Come join the movement.</AppText> 
             <ListItemSeparator></ListItemSeparator>
@@ -54,6 +57,10 @@ const styles = StyleSheet.create({
     },
     headerProfileContainer:{
         alignItems: 'center',
+    },
+    headerAddresscontainer:{
+      width: "80%",
+      alignItems: "center"
     },
     avatar: {
       width: 130,
