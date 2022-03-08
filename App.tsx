@@ -39,7 +39,7 @@ const TabNavigator = () =>{
 export default function App() {
   return (
       <NavigationContainer theme={navigationTheme}>
-        <AuthNavigator/>
+        <TabNavigator/>
       </NavigationContainer>
   );
 }
