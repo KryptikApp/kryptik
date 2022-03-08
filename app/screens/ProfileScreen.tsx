@@ -8,13 +8,15 @@ import {
     TouchableOpacity,
     Pressable
   } from 'react-native';
-import Collapsible from 'react-native-collapsible';
+import CollapsibleView from "@eliav2/react-native-collapsible-view";
+
 import AppButton from '../components/Button';
 import FollowButton from '../components/FollowButton';
 
 import Screen from "../components/Screen";
 import AppText from "../components/Text";
 import colors from '../config/colors';
+import { ListItemSeparator } from '../components/lists';
 
 function ProfileScreen(props:any) {
     let x:string = "Profile Screen!";
@@ -30,13 +32,14 @@ function ProfileScreen(props:any) {
           <View style={styles.containerButton}> 
           <FollowButton title="Add" onPress={handleAddfriend}></FollowButton>
           </View>
-          <View style={styles.headerProfileContainer}>
-            <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
+          <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
+          <View style={styles.body}>
+            <View style={styles.headerProfileContainer}>
               <Text style={styles.name}>Jerry Prell</Text>
               <Text style={styles.info}>0x...89e3</Text>
-              <Collapsible >
-               <AppText>Hello! I am a native programmer interested in pandas and python. Follow me to learn more!</AppText>
-              </Collapsible>
+            </View>  
+              <AppText style={styles.profileDescription}>Hey! I'm funky and fun. Come join the movement.</AppText> 
+            <ListItemSeparator></ListItemSeparator>
           </View>
         </Screen>
     );
@@ -50,8 +53,6 @@ const styles = StyleSheet.create({
       height: "20%"
     },
     headerProfileContainer:{
-        position: 'absolute',
-        top: "10%",
         alignItems: 'center',
     },
     avatar: {
@@ -61,19 +62,34 @@ const styles = StyleSheet.create({
       borderWidth: 4,
       borderColor: "white",
       marginBottom:5, 
+      alignSelf:'center',
+      position: 'absolute',
+      top: "10%",
     },
     containerButton:{
       position: "absolute",
       top: "2%",
       right: "3.5%",
     },
+    body:{
+      marginTop:60,
+    },
+    profileDescription:{
+     paddingHorizontal: "7%"
+    },
+    containerMain:{
+        marginTop:10,
+        height:45,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom:20,
+        backgroundColor: colors.blueLight
+    },
     name:{
       fontSize:22,
       color: colors.black,
       fontWeight:'600',
-    },
-    body:{
-      marginTop:40,
     },
     bodyContent: {
       flex: 1,
