@@ -4,8 +4,11 @@ import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import colors from '../config/colors';
 
 export default function Button(props) {
-  const { onPress, addy = 'Save',  image } = props;
+  const { onPress, addy = 'Save',  image, width="80%" } = props;
   return (
+    // outer container for address button 
+    <View style={{width:width, alignItems: 'center'}}>
+    {/* clickable address button */}
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <View style={styles.container}>
       <View>
@@ -18,6 +21,7 @@ export default function Button(props) {
        </View>
         </View>
     </TouchableOpacity>
+    </View>
   );
 }
 
