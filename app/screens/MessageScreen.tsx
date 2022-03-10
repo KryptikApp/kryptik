@@ -29,7 +29,7 @@ function MessagesScreen(props:any) {
         let x:string = "Messages Screen!";
         console.log(x);
         
-        const [messages, setMessages] = useState(initialMessages);
+  const [messages, setMessages] = useState(initialMessages);
   const [refreshing, setRefreshing] = useState(false);
 
   const handleDelete = (message) => {
