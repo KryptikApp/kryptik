@@ -17,7 +17,7 @@ import ListItemSaveAction from "../components/lists/ListItemSaveAction";
 let searchAssetService = new SearchAssetService()
 
 
-function ExploreScreen() {
+function ExploreScreen({navigation}) {
     let x:string = "Explore Screen!";
     console.log(x);
 
@@ -68,7 +68,7 @@ function ExploreScreen() {
                     title={item.fullName}
                     subTitle={item.ticker}
                     image={{uri: item.iconPath}}
-                    onPress={() => console.log("Network selected", item)}
+                    onPress={() => console.log(navigation.navigate("NetworkOverviewScreen", {network: item}))}
                     renderRightActions={() => (
                     <ListItemSaveAction onPress={() => handleSave(item)} />
                     )}

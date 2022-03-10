@@ -15,6 +15,7 @@ import { AntDesign } from '@expo/vector-icons';
 import ProfileScreen from './app/screens/ProfileScreen';
 import AuthNavigator from './app/navigation/AuthNavigation';
 import navigationTheme from './app/navigation/navigationTheme';
+import NetworkNavigator from './app/navigation/networkNavigation';
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () =>{
@@ -29,7 +30,7 @@ const TabNavigator = () =>{
         }
       }}
        >
-        <Tab.Screen name="Find" component={ExploreScreen}  options={{ tabBarIcon: ({size, color})=><AntDesign name="search1" size={size} color={color}/> }}/>
+        <Tab.Screen name="Find" component={NetworkNavigator}  options={{ tabBarIcon: ({size, color})=><AntDesign name="search1" size={size} color={color}/> }}/>
         <Tab.Screen name="Wallet" component={WalletScreen}  options={{ tabBarIcon: ({size, color})=><AntDesign name="wallet" size={size} color={color}/> }}/>
         <Tab.Screen name="Profile" component={ProfileScreen}  options={{ tabBarIcon: ({size, color})=><AntDesign name="user" size={size} color={color}/> }}/>
       </Tab.Navigator>

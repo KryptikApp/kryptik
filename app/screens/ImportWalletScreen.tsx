@@ -6,7 +6,7 @@ import colors from "../config/colors";
 import Screen from "../components/Screen";
 import AppButton from '../components/Button';
 
-function CreateWalletScreen(props:any) {
+function ImportWalletScreen(props:any) {
         let x:string = "Create walllet Screen!";
         console.log(x);
         
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default CreateWalletScreen;
+export default ImportWalletScreen;
