@@ -1,23 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, Image, View, Button } from 'react-native';
-import CreateWalletScreen from './app/screens/CreateWalletScreen';
-import LandingScreen from './app/screens/LandingScreen';
 import 'react-native-gesture-handler';
-import MessagesScreen from './app/screens/MessageScreen';
-import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import WalletScreen from './app/screens/WalletScreen';
-import ExploreScreen from './app/screens/ExploreScreen';
-import SendScreen from './app/screens/SendScreen';
 import colors from './app/config/colors';
 import { AntDesign } from '@expo/vector-icons';
 import ProfileScreen from './app/screens/ProfileScreen';
-import AuthNavigator from './app/navigation/AuthNavigation';
 import navigationTheme from './app/navigation/navigationTheme';
-import NetworkNavigator from './app/navigation/networkNavigation';
+import NetworkNavigator from './app/navigation/NetworkNavigation';
+import AssetPriceService from './app/services/AssetPriceService';
+
 
 const Tab = createBottomTabNavigator();
+  // initialize search asset service
+global.assetPriceService = new AssetPriceService();
 const TabNavigator = () =>{
   return (
       <Tab.Navigator // ...

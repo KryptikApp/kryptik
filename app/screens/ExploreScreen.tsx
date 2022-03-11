@@ -7,6 +7,7 @@ import SearchAssetService from "../services/assetSearchSevice";
 import { FlatList, Image, StyleSheet } from "react-native";
 import { ListItem, ListItemSeparator } from "../components/lists";
 import ListItemSaveAction from "../components/lists/ListItemSaveAction";
+import AssetPriceService from "../services/AssetPriceService";
 
 
 
@@ -17,22 +18,42 @@ import ListItemSaveAction from "../components/lists/ListItemSaveAction";
 let searchAssetService = new SearchAssetService()
 
 
+
 function ExploreScreen({navigation}) {
     let x:string = "Explore Screen!";
     console.log(x);
 
     let initialNetworks:Network[] = []
     const [networks, setNetworks] = useState(initialNetworks);
+    const [refreshing, setRefreshing] = useState(false);
     const [search, setSearch] = useState('');
+    // market coin data
+    const [marketCoinData, setMarketCoinData] = useState([]);
     
+    const loadInitialNetworks =  function(){
+        searchAssetService.StartSevice()
+        .then(
+            data =>
+            setNetworks(data.getAllNetworks())
+        );
+        // load historical prices
+        global.assetPriceService.StartSevice().then(
+            data=>setMarketCoinData(data.getAllMarketData())
+        )
+    };
+
     // load initial network data
     useEffect(() => {   
-    searchAssetService.StartSevice()
-    .then(
-        data =>
-        setNetworks(data.getAllNetworks())
-    );
+        loadInitialNetworks();
     }, [])
+
+
+    const handleNetworkSelection = (network) =>{
+        // retreive price data for selected network
+        navigation.navigate("NetworkOverviewScreen", {network: network});
+    }
+
+    
 
     // ACTION HELPERS
     const handleSave = (network) => {
@@ -68,12 +89,19 @@ function ExploreScreen({navigation}) {
                     title={item.fullName}
                     subTitle={item.ticker}
                     image={{uri: item.iconPath}}
-                    onPress={() => console.log(navigation.navigate("NetworkOverviewScreen", {network: item}))}
+                    onPress={() => handleNetworkSelection(item)}
+                    
                     renderRightActions={() => (
                     <ListItemSaveAction onPress={() => handleSave(item)} />
                     )}
                 />
                 )}
+                refreshing={refreshing}
+                onRefresh={() => {
+                // reset initial networks
+                // TODO... just get initial state.... can use search with blank input
+                loadInitialNetworks();
+                }}
                 ItemSeparatorComponent={ListItemSeparator}
                 // refreshing={refreshing}
                 // onRefresh={() => {
