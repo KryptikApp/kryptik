@@ -2,7 +2,14 @@ import firestore from './firebaseDB';
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { ServiceState } from './types';
 import BaseService from './BaseService';
-import{rpcEndpoints} from '../config/providers'
+import {
+    Block,
+    Network as EthersNetwork,
+    StaticJsonRpcProvider,
+    TransactionRequest,
+    TransactionResponse,
+} from '@ethersproject/providers';
+import{rpcEndpointsConfig} from '../config/providers'
 const citiesRef = collection(firestore, "networks");
 
 
@@ -10,6 +17,8 @@ class SearchAssetService extends BaseService{
     public networks:Network[] = []
     // network is referenced by its BIP44 chain id
     public rpcEndpoints: { [networkId:number]: string } = {};
+    // providers for each network
+    public providers: {[networkId:number]: any} = {};
    
     constructor() {
         super();
@@ -18,18 +27,29 @@ class SearchAssetService extends BaseService{
     async InternalStartService(){
         this.networks = await this.populateNetworksAsync();
         this.setRpcEndpoints();
+        this.setProviders();
         console.log("internal start service search assets");
         this.serviceState = ServiceState.started;
         return this;
     }
 
+    // sets rpc endpoints for each supported network
     private setRpcEndpoints(){
         this.networks.forEach((network:Network)=>{
             let chainId:number = network.chainId
             if(network.isSupported){
-                this.rpcEndpoints[chainId] = rpcEndpoints[chainId];
+                this.rpcEndpoints[chainId] = rpcEndpointsConfig[chainId];
             }
+            let provider = new StaticJsonRpcProvider(this.rpcEndpoints[chainId]);
         });
+    }
+
+    // sets providers for each supported network
+    private setProviders(){
+        for (let chainId in this.rpcEndpoints) {
+            let newProvider = new StaticJsonRpcProvider(this.rpcEndpoints[chainId]);
+            this.providers[chainId] = newProvider;
+        }
     }
 
     private async populateNetworksAsync() :Promise<Network[]>{
