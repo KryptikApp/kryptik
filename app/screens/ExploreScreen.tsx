@@ -3,7 +3,7 @@ import AppButton from "../components/Button";
 import { SearchBar } from "react-native-elements";
 import Screen from "../components/Screen";
 import AppText from "../components/Text";
-import SearchAssetService from "../services/assetSearchSevice";
+import SearchAssetService from "../services/NetworkSevice";
 import { FlatList, Image, StyleSheet } from "react-native";
 import { ListItem, ListItemSeparator } from "../components/lists";
 import ListItemSaveAction from "../components/lists/ListItemSaveAction";
