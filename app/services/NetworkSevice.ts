@@ -7,6 +7,8 @@ const citiesRef = collection(firestore, "networks");
 
 class SearchAssetService extends BaseService{
     public networks:Network[] = []
+    // network is referenced by its BIP44 chain id
+    public rpcEndpoints: { [networkName:string]: string } = {};
    
     constructor() {
         super();
@@ -19,6 +21,7 @@ class SearchAssetService extends BaseService{
         return this;
     }
 
+    
 
     private async populateNetworksAsync() :Promise<Network[]>{
         const q = query(citiesRef);
@@ -35,7 +38,8 @@ class SearchAssetService extends BaseService{
             about: docData.about,
             dateCreated: docData.dateCreated,
             iconPath: docData.iconPath,
-            whitePaperPath: docData.whitePaperPath
+            whitePaperPath: docData.whitePaperPath,
+            isSupported: docData.isSupported
         }
         networksResult.push(networkToAdd);
         });
