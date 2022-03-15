@@ -29,7 +29,6 @@ class SearchAssetService extends BaseService{
         this.setRpcEndpoints();
         this.setProviders();
         console.log("internal start service search assets");
-        this.serviceState = ServiceState.started;
         return this;
     }
 
@@ -40,7 +39,6 @@ class SearchAssetService extends BaseService{
             if(network.isSupported){
                 this.rpcEndpoints[chainId] = rpcEndpointsConfig[chainId];
             }
-            let provider = new StaticJsonRpcProvider(this.rpcEndpoints[chainId]);
         });
     }
 

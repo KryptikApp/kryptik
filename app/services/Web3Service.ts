@@ -15,7 +15,6 @@ class Web3Service extends BaseService{
 
     async InternalStartService(){
         console.log("internal start service web3");
-        this.serviceState = ServiceState.started;
         return this;
     }
 

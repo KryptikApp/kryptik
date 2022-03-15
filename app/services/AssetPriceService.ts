@@ -19,7 +19,6 @@ class AssetPriceService extends BaseService{
     async InternalStartService(){
         this.marketData = await this.fetchMarketData();
         console.log("internal start service asset prices");
-        this.serviceState = ServiceState.started;
         return this;
     }
 
