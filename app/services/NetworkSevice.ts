@@ -2,13 +2,14 @@ import firestore from './firebaseDB';
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { ServiceState } from './types';
 import BaseService from './BaseService';
+import{rpcEndpoints} from '../config/providers'
 const citiesRef = collection(firestore, "networks");
 
 
 class SearchAssetService extends BaseService{
     public networks:Network[] = []
     // network is referenced by its BIP44 chain id
-    public rpcEndpoints: { [networkName:string]: string } = {};
+    public rpcEndpoints: { [networkId:number]: string } = {};
    
     constructor() {
         super();
@@ -16,12 +17,20 @@ class SearchAssetService extends BaseService{
 
     async InternalStartService(){
         this.networks = await this.populateNetworksAsync();
+        this.setRpcEndpoints();
         console.log("internal start service search assets");
         this.serviceState = ServiceState.started;
         return this;
     }
 
-    
+    private setRpcEndpoints(){
+        this.networks.forEach((network:Network)=>{
+            let chainId:number = network.chainId
+            if(network.isSupported){
+                this.rpcEndpoints[chainId] = rpcEndpoints[chainId];
+            }
+        });
+    }
 
     private async populateNetworksAsync() :Promise<Network[]>{
         const q = query(citiesRef);
@@ -46,7 +55,6 @@ class SearchAssetService extends BaseService{
         return networksResult;
     }
 
-    // TODO: cache assetlist, so no need to retrieve on search
     async searchNetworksAsync(searchQuery:string) :Promise<Network[]>{
         searchQuery = searchQuery.toUpperCase();
         let networksResult:Network[] = []
