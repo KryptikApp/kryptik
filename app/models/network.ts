@@ -1,6 +1,6 @@
 // data model for cryptocurrency networks (blockchains)
 
-interface Network {
+export interface Network {
     fullName: string,
     ticker: string,
     iconPath: string,
