@@ -3,9 +3,6 @@ import { StyleSheet, Text, Image, View, Button, Pressable, FlatList } from 'reac
 
 import Screen from "../components/Screen";
 import React, { useState } from 'react';
-import colors from "../config/colors";
-import ButtonBtm from "../components/Button";
-import AppText from "../components/Text";
 import { ListItem, ListItemDeleteAction, ListItemSeparator } from "../components/lists";
 
 

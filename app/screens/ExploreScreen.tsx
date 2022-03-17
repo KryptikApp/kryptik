@@ -3,11 +3,12 @@ import AppButton from "../components/Button";
 import { SearchBar } from "react-native-elements";
 import Screen from "../components/Screen";
 import AppText from "../components/Text";
-import SearchAssetService from "../services/NetworkSevice";
+import Web3Service from "../services/Web3Service";
 import { FlatList, Image, StyleSheet } from "react-native";
 import { ListItem, ListItemSeparator } from "../components/lists";
 import ListItemSaveAction from "../components/lists/ListItemSaveAction";
 import AssetPriceService from "../services/AssetPriceService";
+import { Network } from "../models/network";
 
 
 
@@ -15,7 +16,7 @@ import AssetPriceService from "../services/AssetPriceService";
 
 
 // initialize search asset service
-let searchAssetService = new SearchAssetService()
+let searchAssetService = new Web3Service()
 
 
 

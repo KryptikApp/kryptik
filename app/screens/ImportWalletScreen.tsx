@@ -3,7 +3,6 @@ import { StyleSheet, Text, Image, View, Button, Pressable } from 'react-native';
 
 
 import colors from "../config/colors";
-import Screen from "../components/Screen";
 import AppButton from '../components/Button';
 
 function ImportWalletScreen(props:any) {

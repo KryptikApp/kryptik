@@ -6,8 +6,8 @@ import Screen from "../components/Screen";
 import AppText from "../components/Text";
 import colors from "../config/colors";
 import CoinChart from "../components/CoinChart";
-import AssetPriceService from "../services/AssetPriceService";
 import { ListItemSeparator } from "../components/lists";
+import { Network } from "../models/network";
 
 
 

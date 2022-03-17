@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import { ServiceState } from './types';
 import BaseService from './BaseService';
+import { Network } from '../models/network';
 const citiesRef = collection(firestore, "networks");
 
 
