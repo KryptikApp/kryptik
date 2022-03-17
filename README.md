@@ -14,6 +14,11 @@ Then install react native & expo cli
 npm install -g react-native && npm install -g expo-cli
 ```
 
+Then install project dependencies
+```
+npm i
+```
+
 For mobile testing, you'll also need XCode for running an [Iphone emulator](https://developer.apple.com/xcode/) and Android Studio for running an [Android Emulator](https://developer.android.com/studio).
 
 Once this is completed run `expo init kryptik`
