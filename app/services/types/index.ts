@@ -3,4 +3,14 @@ enum ServiceState{
     stopped=1,
     unstarted=2
 }
-export{ServiceState}
+
+enum Status
+{
+    Success = 0,
+    Failure = 1,
+    Pending = 2,
+    Done = 3
+}
+
+export{ServiceState, Status}
+
