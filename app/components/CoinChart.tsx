@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, Image, Dimensions, ActivityIndicator } from 'react-native'
 import { useSharedValue } from 'react-native-reanimated';
 import { LineChart } from 'react-native-wagmi-charts';
+import CoinTitle from './CoinTitle';
 import AppText from './Text';
 
 
@@ -48,10 +49,7 @@ const CoinChart = ({ color, currentPrice, logoUrl, name, symbol, priceChangePerc
       {/* Titles */}
       <View style={styles.titlesWrapper}>
         <View style={styles.upperTitles}>
-          <View style={styles.upperLeftTitle}>
-            <Image source={{ uri: logoUrl }} style={styles.image} />
-            <Text style={styles.subtitle}>{name} ({symbol.toUpperCase()})</Text>
-          </View>
+          <CoinTitle logoUrl={logoUrl} name={name} ticker={symbol}></CoinTitle>
           <Text style={styles.subtitle}>7d</Text>
         </View>
         <View style={styles.lowerTitles}>
