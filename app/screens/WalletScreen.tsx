@@ -14,6 +14,14 @@ function WalletScreen({navigation}) {
         // navigate to Kryptik qr scanner
         navigation.navigate("ScanScreen");
     }
+    const handleSendActionClick = function(){
+        // navigate to Kryptik qr scanner
+        navigation.navigate("ChooseAssetScreen");
+    }
+    const handleReceiveActionClick = function(){
+        // navigate to Kryptik qr scanner
+        console.log("Receive!")
+    }
 
     return (
         <Screen>
@@ -24,8 +32,16 @@ function WalletScreen({navigation}) {
                 </View>
                 
                 <View style={styles.actionContainer}>
-                    <AppText style={styles.action}>Send</AppText>
-                    <AppText style={styles.action}>Receive</AppText>
+                    <View style={styles.action}>
+                        <Pressable onPress={handleSendActionClick}>
+                            <AppText style={styles.actionText}>Send</AppText>
+                        </Pressable>
+                    </View>
+                    <View style={styles.action}>
+                        <Pressable onPress={handleReceiveActionClick}>
+                            <AppText style={styles.actionText}>Receive</AppText>
+                        </Pressable>
+                    </View>
                     <View style={styles.qrIconAction}>
                         <Pressable onPress={handleQrIconClick}>
                                 <MaterialCommunityIcons
@@ -91,6 +107,8 @@ const styles = StyleSheet.create({
     },
     action:{
         flex: 2,
+    },
+    actionText:{
         fontWeight: "800",
         fontSize: 22,
         color: colors.white,

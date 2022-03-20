@@ -5,6 +5,9 @@ import ExploreScreen from '../screens/ExploreScreen';
 import NetworkOverviewScreen from '../screens/NetworkOverviewScreen';
 import WalletScreen from '../screens/WalletScreen';
 import ScanScreen from '../screens/ScanScreen';
+import ChooseAssetScreen from '../screens/SendFlow/ChooseAssetScreen';
+import ChooseAmountScreen from '../screens/SendFlow/ChooseAmountScreen';
+import SendScreen from '../screens/SendFlow/SendScreen';
 
 
 const Stack = createStackNavigator();
@@ -15,7 +18,7 @@ const Stack = createStackNavigator();
 // }
 const WalletNavigator = () =>{
   return(
-    <Stack.Navigator screenOptions={{headerShown: false, headerBackTitleVisible:true, headerTitleAlign:"center"}}>
+    <Stack.Navigator screenOptions={{headerShown: false, headerBackTitleVisible:true, headerTitleAlign:"center",}}>
       
     <Stack.Screen
       name="WalletScreen"
@@ -26,6 +29,21 @@ const WalletNavigator = () =>{
       name="ScanScreen"
       component={ScanScreen}
       options={{ title: 'QR Scanner', presentation: 'modal', headerShown:true }}
+    />
+    <Stack.Screen
+      name="ChooseAssetScreen"
+      component={ChooseAssetScreen}
+      options={{ title: 'Choose Coin', headerShown:true }}
+    />
+    <Stack.Screen
+      name="ChooseAmountScreen"
+      component={ChooseAmountScreen}
+      options={{ title: 'Choose Amount', headerShown:true }}
+    />
+    <Stack.Screen
+      name="SendScreen"
+      component={SendScreen}
+      options={{ title: 'Send', headerShown:true }}
     />
 
   </Stack.Navigator>
