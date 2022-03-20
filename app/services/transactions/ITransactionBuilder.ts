@@ -1,5 +1,5 @@
-import { Network } from "../models/network";
-import {Status} from "./types/index"
+import { Network } from "../../models/network";
+import {Status} from "../types/index"
 import {
     Block,
     StaticJsonRpcProvider,
