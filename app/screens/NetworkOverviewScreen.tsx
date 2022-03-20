@@ -10,42 +10,6 @@ import { ListItemSeparator } from "../components/lists";
 import { Network } from "../models/network";
 
 
-
-const styles = StyleSheet.create({
-    buttonsContainer: {
-        padding: 20,
-        width: "100%",
-        position: "absolute",
-        bottom: 20,
-        alignItems:'center'
-      },
-    textTitle: {
-      fontWeight: "700",
-      fontSize: 30,
-    },
-    textSubTitle: {
-      fontWeight: "700",
-      fontSize: 20,
-      color: colors.black,
-    },
-    textAbout:{
-        color: colors.black,
-        fontSize: 20
-    },
-    container:{
-        paddingHorizontal:"2%",
-        paddingBottom: "5%",
-        flex: 1,
-    },
-    chartPlaceHolder:{
-      height: "20%",
-      width:"100%",
-      justifyContent:"center"
-    }
-  });
-
-
-
 function NetworkOverviewScreen({ route, navigation }){
     let x:string = "Send Screen!";
     console.log(x);
@@ -75,6 +39,7 @@ function NetworkOverviewScreen({ route, navigation }){
         <View>
             <AppText style={{color: network.hexColor, fontWeight: "700", fontSize: 30,}}>{network.fullName}</AppText>
             {isLoaded &&
+            <View style={{width:"100%", paddingHorizontal: 0,}}>
                <CoinChart
                currentPrice={coinData.current_price}
                logoUrl={network.iconPath}
@@ -84,6 +49,7 @@ function NetworkOverviewScreen({ route, navigation }){
                sparkline={coinData?.sparkline_in_7d.price}
                color={network.hexColor}
                 />
+              </View>
             }
             {isLoaded &&
                <ListItemSeparator/>
@@ -105,5 +71,37 @@ function NetworkOverviewScreen({ route, navigation }){
 }
 
 
+const styles = StyleSheet.create({
+  buttonsContainer: {
+      padding: 20,
+      width: "100%",
+      position: "absolute",
+      bottom: 20,
+      alignItems:'center'
+    },
+  textTitle: {
+    fontWeight: "700",
+    fontSize: 30,
+  },
+  textSubTitle: {
+    fontWeight: "700",
+    fontSize: 20,
+    color: colors.black,
+  },
+  textAbout:{
+      color: colors.black,
+      fontSize: 20
+  },
+  container:{
+      paddingHorizontal:"2%",
+      paddingBottom: "5%",
+      flex: 1,
+  },
+  chartPlaceHolder:{
+    height: "20%",
+    width:"100%",
+    justifyContent:"center"
+  }
+});
 
 export default NetworkOverviewScreen;
