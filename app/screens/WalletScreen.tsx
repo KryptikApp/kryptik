@@ -1,6 +1,6 @@
 import Screen from "../components/Screen";
 import AppText from "../components/Text";
-import { Pressable, StyleSheet, View} from 'react-native';
+import { Pressable, StyleSheet, View, Text} from 'react-native';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -17,19 +17,36 @@ function WalletScreen({navigation}) {
 
     return (
         <Screen>
-            <View style={styles.qrContainer}>
-            <Pressable onPress={handleQrIconClick}>
-                <MaterialCommunityIcons
-                name="qrcode"
-                size={35}
-                color={colors.black}
-                style={styles.qrIcon}
-                />
-            </Pressable>        
+            
+            <View style={styles.headerContainer}>
+                <View style={styles.balanceContainer}>
+                    <AppText style={styles.textBalance}>$2,345</AppText>
+                </View>
+                
+                <View style={styles.actionContainer}>
+                    <AppText style={styles.action}>Send</AppText>
+                    <AppText style={styles.action}>Receive</AppText>
+                    <View style={styles.qrIconAction}>
+                        <Pressable onPress={handleQrIconClick}>
+                                <MaterialCommunityIcons
+                                    name="qrcode"
+                                    size={35}
+                                    color={colors.white}
+                                    style={styles.qrIcon}
+                                    />
+                        </Pressable>
+                    </View>
+                    
+                </View>
+
             </View>
-            <View style={styles.balanceContainer}>
-                <AppText style={styles.textBalance}>$2,345</AppText>
-            </View>
+           
+            {/* <View style={{flexDirection:"row", height: 80, backgroundColor: colors.green, paddingHorizontal: 20, width: "70%", alignContent:'center', alignSelf:'center'}}>
+                <View style={{ flex: 2, backgroundColor: "red" }} />
+                <View style={{ flex: 2, backgroundColor: "darkorange" }} />
+                <View style={{ flex: 2, backgroundColor: "green" }} />
+            </View> */}
+            
         </Screen>
     );
 
@@ -38,31 +55,68 @@ function WalletScreen({navigation}) {
 const styles = StyleSheet.create({
     qrContainer:{
         flexDirection: "row-reverse",
-        width: "100%",
-        height: "5%",
+        width: "100%"
     },
     qrIcon:{
-        marginRight: 2
+        backgroundColor: colors.blue,
+        padding: 2,
+        borderRadius: 40, 
+        alignSelf: 'center'
+    },
+    qrIconAction:{
+        flex: 2,
+    },
+    qrWrapper:{
+        backgroundColor: colors.blue,
+        padding: 2,
+        borderRadius: 40,
+        alignContent: 'center'
     },
     headerBack:{
         backgroundColor: colors.blueLight,
         width:"100%",
         height: "5%"
     },
+    actionContainer:{
+        width: "70%",
+        borderRadius: 25,
+        flexDirection: "row",
+        backgroundColor: colors.blueLight,
+        alignContent: 'center',
+        justifyContent:'center',
+        paddingHorizontal: 5,
+        alignSelf:'center',
+        paddingVertical: 2,
+        marginTop: 20
+    },
+    action:{
+        flex: 2,
+        fontWeight: "800",
+        fontSize: 22,
+        color: colors.white,
+        textAlign: 'center'
+    },
     buttonsContainer: {
       padding: 20,
       width: "100%",
       position: "absolute",
       bottom: 20,
-      alignItems:'center'
+      alignItems:'center',
+      alignSelf:'center',
+      justifyContent:'center',
     },
     balanceContainer:{
         alignItems: 'center'
     },
+    headerContainer:{
+        paddingTop: "8%",
+        backgroundColor: colors.blue,
+        paddingBottom: 20
+    },
     textBalance: {
       fontWeight: "900",
       fontSize: 38,
-      color: "black",
+      color: colors.white,
     },
     textSubTitle: {
       fontWeight: "500",
