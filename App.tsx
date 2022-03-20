@@ -8,6 +8,7 @@ import ProfileScreen from './app/screens/ProfileScreen';
 import navigationTheme from './app/navigation/navigationTheme';
 import NetworkNavigator from './app/navigation/NetworkNavigation';
 import AssetPriceService from './app/services/AssetPriceService';
+import WalletNavigator from './app/navigation/WalletNavigation';
 
 
 const Tab = createBottomTabNavigator();
@@ -26,7 +27,7 @@ const TabNavigator = () =>{
       }}
        >
         <Tab.Screen name="Find" component={NetworkNavigator}  options={{ tabBarIcon: ({size, color})=><AntDesign name="search1" size={size} color={color}/> }}/>
-        <Tab.Screen name="Wallet" component={WalletScreen}  options={{ tabBarIcon: ({size, color})=><AntDesign name="wallet" size={size} color={color}/> }}/>
+        <Tab.Screen name="Wallet" component={WalletNavigator}  options={{ tabBarIcon: ({size, color})=><AntDesign name="wallet" size={size} color={color}/> }}/>
         <Tab.Screen name="Profile" component={ProfileScreen}  options={{ tabBarIcon: ({size, color})=><AntDesign name="user" size={size} color={color}/> }}/>
       </Tab.Navigator>
   );
