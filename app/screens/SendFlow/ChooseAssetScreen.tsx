@@ -14,7 +14,7 @@ function ChooseAssetScreen({navigation}) {
     
     return (
         <>
-            <SearchAsset onPressAsset={handleNetworkSelection}></SearchAsset>
+            <SearchAsset onlySupported={true} onPressAsset={handleNetworkSelection}></SearchAsset>
         </>
     );
 

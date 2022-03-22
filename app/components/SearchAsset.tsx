@@ -15,7 +15,7 @@ let searchAssetService = new Web3Service()
 
 
 
-function SearchAsset({onPressAsset}) {
+function SearchAsset({onPressAsset, onlySupported}) {
     let x:string = "Explore Screen!";
     console.log(x);
 
@@ -30,7 +30,7 @@ function SearchAsset({onPressAsset}) {
         searchAssetService.StartSevice()
         .then(
             data =>
-            setNetworks(data.getAllNetworks())
+            setNetworks(data.getAllNetworks(onlySupported))
         );
         // load historical prices
         global.assetPriceService.StartSevice().then(
@@ -52,11 +52,20 @@ function SearchAsset({onPressAsset}) {
     };
 
     const handleSearch = function(query){
-
-        searchAssetService.searchNetworksAsync(query).then(response => {
-            setNetworks(response);
-            setSearch(query);
-        });
+        if(onlySupported){
+            searchAssetService.searchNetworksAsync(query, true).then(response => {
+                setNetworks(response);
+                setSearch(query);
+            });
+            console.log("Search supported!")
+        }
+        else{
+            searchAssetService.searchNetworksAsync(query).then(response => {
+                setNetworks(response);
+                setSearch(query);
+                console.log("Search all!")
+            });
+        }  
     };
       
     // VIEW 

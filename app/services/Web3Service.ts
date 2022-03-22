@@ -1,6 +1,6 @@
 import firestore from './firebaseDB';
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { ServiceState } from './types';
+import { ServiceState, Status } from './types';
 import BaseService from './BaseService';
 import {Network} from '../models/network'
 import {
@@ -11,11 +11,13 @@ import {
 } from '@ethersproject/providers';
 import{rpcEndpointsConfig} from '../config/providers'
 import { getChainIdFromNetwork } from './Utils';
+import { stringify } from '@firebase/util';
 const citiesRef = collection(firestore, "networks");
 
 
 class Web3Service extends BaseService{
     public networks:Network[] = []
+    public networksSupported:Network[] = []
     // network is referenced by its BIP44 chain id
     public rpcEndpoints: { [networkId:number]: string } = {};
     // providers for each network
@@ -29,7 +31,12 @@ class Web3Service extends BaseService{
     }
 
     async InternalStartService(){
-        this.networks = await this.populateNetworksAsync();
+        try{
+            await this.populateNetworksAsync();
+        }
+        catch{
+            throw(Error("Error: Unable to populate networks when starting web3 service."))
+        }
         this.setRpcEndpoints();
         this.setProviders();
         console.log("internal start service search assets");
@@ -60,7 +67,7 @@ class Web3Service extends BaseService{
         }
     }
 
-    private async populateNetworksAsync() :Promise<Network[]>{
+    private async populateNetworksAsync() :Promise<Status>{
         const q = query(citiesRef);
         const querySnapshot = await getDocs(q);
         let networksResult:Network[] = []
@@ -80,26 +87,80 @@ class Web3Service extends BaseService{
         }
         networksResult.push(networkToAdd);
         });
-        return networksResult;
+        this.networks = networksResult;
+        return Status.Success;
     }
 
-    async searchNetworksAsync(searchQuery:string) :Promise<Network[]>{
-        searchQuery = searchQuery.toUpperCase();
+    getSupportedNetworks():Network[]{
         let networksResult:Network[] = []
         this.networks.forEach((network) => {
-        // filter results based on searchquery
-        if(network.ticker.toUpperCase().includes(searchQuery) || network.fullName.toUpperCase().includes(searchQuery)){
-            // build network object from doc result     
-            networksResult.push(network);
-            // console.log(doc.id, " => ", doc.data());
-        }
-        });
+            // filter results based on searchquery
+            if(network.isSupported){
+                // build network object from doc result     
+                networksResult.push(network);
+                // console.log(doc.id, " => ", doc.data());
+            }
+            });
         return networksResult;
     }
 
-    getAllNetworks(){
+    async searchNetworksAsync(searchQuery:string, onlySupported?:boolean) :Promise<Network[]>{
+        console.log("Searching....");
+        console.log("Only supported:")
+        console.log(onlySupported);
+        // set default to false if not specified
+            if(onlySupported==undefined){
+            onlySupported=false
+        }
+        // TODO: update to be if null or empty
+        if(searchQuery == ""){
+            if(onlySupported){
+                return this.getSupportedNetworks();
+            }
+            else{
+                return this.networks;
+            }
+        }
+        // standardize search query 
+        searchQuery = searchQuery.toUpperCase();
+        // initialize networks list
+        let networksResult:Network[] = []
+        if(onlySupported){
+            console.log("entered")
+            this.networks.forEach((network) => {
+                // filter results based on searchquery
+                if((network.ticker.toUpperCase().includes(searchQuery) || network.fullName.toUpperCase().includes(searchQuery)) && network.isSupported){
+                    // build network object from doc result     
+                    networksResult.push(network);
+                    // console.log(doc.id, " => ", doc.data());
+                }
+                });
+        }
+        else{
+            this.networks.forEach((network) => {
+                // filter results based on searchquery
+                if(network.ticker.toUpperCase().includes(searchQuery) || network.fullName.toUpperCase().includes(searchQuery)){
+                    // build network object from doc result     
+                    networksResult.push(network);
+                    // console.log(doc.id, " => ", doc.data());
+                }
+                });
+        }
+        return networksResult;
+    }
+
+    getAllNetworks(onlySupported?:boolean){
         if(this.serviceState != ServiceState.started) throw("Service is not running. Network data has not been populated.")
-        return this.networks;
+        // set default to false if 
+        if(onlySupported == undefined){
+            onlySupported = false
+        }
+        if(onlySupported){
+            return this.getSupportedNetworks();
+        }
+        else{
+            return this.networks;
+        }
     }
 
     // send rpc call given a network
