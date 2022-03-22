@@ -17,8 +17,6 @@ import SearchAsset from "../components/SearchAsset";
 
 
 
-// initialize search asset service
-let searchAssetService = new Web3Service()
 
 
 
@@ -34,7 +32,7 @@ function ExploreScreen({navigation}) {
     const [marketCoinData, setMarketCoinData] = useState([]);
     
     const loadInitialNetworks =  function(){
-        searchAssetService.StartSevice()
+        global.web3Service.StartSevice()
         .then(
             data =>
             setNetworks(data.getAllNetworks())
@@ -67,7 +65,7 @@ function ExploreScreen({navigation}) {
 
     const handleSearch = function(query){
 
-        searchAssetService.searchNetworksAsync(query).then(response => {
+        global.web3Service.searchNetworksAsync(query).then(response => {
             setNetworks(response);
             setSearch(query);
         });
@@ -76,7 +74,7 @@ function ExploreScreen({navigation}) {
     // VIEW 
     return (
         <Screen>
-            <SearchAsset onPressAsset={handleNetworkSelection}></SearchAsset>
+            <SearchAsset onlySupported={false} onPressAsset={handleNetworkSelection}></SearchAsset>
         </Screen>
     );
 

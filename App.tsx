@@ -9,11 +9,13 @@ import navigationTheme from './app/navigation/navigationTheme';
 import NetworkNavigator from './app/navigation/NetworkNavigation';
 import AssetPriceService from './app/services/AssetPriceService';
 import WalletNavigator from './app/navigation/WalletNavigation';
+import Web3Service from './app/services/Web3Service';
 
 
 const Tab = createBottomTabNavigator();
   // initialize search asset service
 global.assetPriceService = new AssetPriceService();
+global.web3Service = new Web3Service();
 const TabNavigator = () =>{
   return (
       <Tab.Navigator // ...

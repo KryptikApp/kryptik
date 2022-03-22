@@ -10,8 +10,7 @@ import AppButton from "../components/Button";
 import AppText from "../components/Text";
 import ListItemSaveAction from "../components/lists/ListItemSaveAction";
 import Screen from "../components/Screen";
-// initialize search asset service
-let searchAssetService = new Web3Service()
+
 
 
 
@@ -27,7 +26,7 @@ function SearchAsset({onPressAsset, onlySupported}) {
     const [marketCoinData, setMarketCoinData] = useState([]);
     
     const loadInitialNetworks =  function(){
-        searchAssetService.StartSevice()
+        global.web3Service.StartSevice()
         .then(
             data =>
             setNetworks(data.getAllNetworks(onlySupported))
@@ -53,14 +52,14 @@ function SearchAsset({onPressAsset, onlySupported}) {
 
     const handleSearch = function(query){
         if(onlySupported){
-            searchAssetService.searchNetworksAsync(query, true).then(response => {
+            global.web3Service.searchNetworksAsync(query, true).then(response => {
                 setNetworks(response);
                 setSearch(query);
             });
             console.log("Search supported!")
         }
         else{
-            searchAssetService.searchNetworksAsync(query).then(response => {
+            global.webService.searchNetworksAsync(query).then(response => {
                 setNetworks(response);
                 setSearch(query);
                 console.log("Search all!")
