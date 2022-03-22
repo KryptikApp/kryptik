@@ -61,8 +61,10 @@ function NetworkOverviewScreen({ route, navigation }){
                <ActivityIndicator size="large" color={network.hexColor} />
             </View>
             }
-            <AppText style={styles.textSubTitle}>About</AppText>
-            <AppText style={styles.textAbout}>{network.about}</AppText>
+            <View style={styles.infoContainer}>
+              <AppText style={styles.textSubTitle}>About</AppText>
+              <AppText style={styles.textAbout}>{network.about}</AppText>
+            </View> 
         </View>
         </ScrollView>
         </>
@@ -90,12 +92,16 @@ const styles = StyleSheet.create({
   },
   textAbout:{
       color: colors.black,
-      fontSize: 20
+      fontSize: 20,
+      paddingBottom: 40
   },
   container:{
       paddingHorizontal:"2%",
-      paddingBottom: "5%",
+      paddingBottom: "8%",
       flex: 1,
+  },
+  infoContainer:{
+    padding: 2,
   },
   chartPlaceHolder:{
     height: "20%",
