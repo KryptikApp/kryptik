@@ -1,7 +1,6 @@
 # Kryptik App
-Kryptik is a mobile app that simplifies digital ownership. One seed. One wallet. Infinite possibilities. 
+A mobile implementation of the Kryptik wallet. This project is stale.
 
-<img src="https://jetthays.com/media/external/kryptikSearch.png" alt="Wallet Page screenshot" width="150">
 
 ## How to run this project
 Make sure you have a current version of Node.js installed.
